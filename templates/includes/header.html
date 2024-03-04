@@ -7,7 +7,9 @@
             <span></span>
             <span></span>
         </button>
-        <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
+        <a class="navbar-brand text-brand" href="{% url 'main:home' %}">
+            <img src="https://samduuf.uz/frontend/img/Logo/Logo.png" alt="">
+        </a>
 
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav">
@@ -20,24 +22,19 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Me'yoriy hujjatlar</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item " href="#">Buyruqlar</a>
-                        <a class="dropdown-item " href="#">Nizomlar</a>
+                        <a class="dropdown-item " href="#buyruqlar">Buyruqlar</a>
+                        <a class="dropdown-item " href="#nizomlar">Nizomlar</a>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="">Start Up Loyihalar</a>
+                    <a class="nav-link " href="#startup-projects">Start Up Loyihalar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'main:talent_students_list' %}">Iqtidorli talabalar</a>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Iqtidorli talabalar</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item " href="#">President stipendiatlar</a>
-                        <a class="dropdown-item " href="#">Davlat stipendiatlar</a>
-                        <a class="dropdown-item " href="#">Iqtidorli talabalar</a>
-                    </div>
-                </li>
+                
                 
             </ul>
         </div>

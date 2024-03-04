@@ -41,82 +41,56 @@
 
 <main id="main">
     {% if startupProjects %}
-    <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title-wrap d-flex justify-content-between">
-                <div class="title-box">
-                  <h2 class="title-a">Start Up loyihalar</h2>
-                </div>
-                <div class="title-link">
-                  <a href="property-grid.html">Barchasi
-                    <span class="bi bi-chevron-right"></span>
-                  </a>
-                </div>
+    <!-- ======= Testimonials Section ======= -->
+    <section class="section-testimonials section-t8 nav-arrow-a" id="startup-projects">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Start-Up loyihalar</h2>
               </div>
             </div>
           </div>
-  
-          <div id="property-carousel" class="swiper">
-            <div class="swiper-wrapper">
-  
-              <div class="carousel-item-b swiper-slide">
-                <div class="card-box-a card-shadow">
-                  <div class="img-box-a">
-                    <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
+        </div>
+
+        <div id="testimonial-carousel" class="swiper">
+          <div class="swiper-wrapper">
+            {% for startup in startupProjects %}
+            <div class="carousel-item-a swiper-slide">
+              <div class="testimonials-box">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="testimonial-img">
+                      <img src="{{ startup.image.url }}" alt="startup image" class="img-fluid">
+                    </div>
                   </div>
-                  <div class="card-overlay">
-                    <div class="card-overlay-a-content">
-                      <div class="card-header-a">
-                        <h2 class="card-title-a">
-                          <a href="property-single.html">206 Mount
-                            <br /> Olive Road Two</a>
-                        </h2>
-                      </div>
-                      <div class="card-body-a">
-                        <div class="price-box d-flex">
-                          <span class="price-a">rent | $ 12.000</span>
-                        </div>
-                        <a href="#" class="link-a">Click here to view
-                          <span class="bi bi-chevron-right"></span>
-                        </a>
-                      </div>
-                      <div class="card-footer-a">
-                        <ul class="card-info d-flex justify-content-around">
-                          <li>
-                            <h4 class="card-info-title">Area</h4>
-                            <span>340m
-                              <sup>2</sup>
-                            </span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Beds</h4>
-                            <span>2</span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Baths</h4>
-                            <span>4</span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Garages</h4>
-                            <span>1</span>
-                          </li>
-                        </ul>
-                      </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="testimonial-ico">
+                      <i class="bi bi-chat-quote-fill"></i>
+                    </div>
+                    <div class="testimonials-content">
+                      <p class="testimonial-text">
+                        {{ startup.content }}
+                      </p>
+                    </div>
+                    <div class="testimonial-author-box">
+                      <img src="{{ startup.image.url }}" alt="" class="testimonial-avatar">
+                      <h5 class="testimonial-author">Eldor Karimov</h5>
                     </div>
                   </div>
                 </div>
-              </div><!-- End carousel item -->
-  
-            </div>
+              </div>
+            </div><!-- End carousel item -->
+            {% endfor %}
+
           </div>
-          <div class="propery-carousel-pagination carousel-pagination"></div>
-  
         </div>
-      </section><!-- End Latest Properties Section -->
-      {% endif %}
+        <div class="testimonial-carousel-pagination carousel-pagination"></div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+    {% endif %}
 
 
     <!-- ======= Latest News Section ======= -->
@@ -172,6 +146,49 @@
             <div class="news-carousel-pagination carousel-pagination"></div>
         </div>
     </section><!-- End Latest News Section -->
+    
+    <!-- ======= Services Section ======= -->
+    
+    <section id="services" class="services" style="background-color: #f3f9f6;">
+      
+      <div class="container">
+        <div class="badge text-wrap fs-4 mt-5 mb-4" id="buyruqlar" style="width: 15rem; background-color: #2eca6a;">
+          Buyruqlar
+        </div>
+
+        <div class="row">
+          {% for doc in documents %}
+          {% if doc.doc_type == 1 %}
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="fade-up">
+              <div class="icon"><i class="bi bi-card-checklist"></i></div>
+              <h4 class="title"><a href="{{ doc.file.url }}">{{ doc.created|date }}</a></h4>
+              <p class="description">{{ doc.file_name }}</p>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="badge text-wrap fs-4 mt-5 mb-4" id="nizomlar" style="width: 15rem; background-color: #2eca6a;">
+          Nizomlar
+        </div>
+        <div class="row">
+          {% for doc in documents %}
+          {% if doc.doc_type == 2 %}
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="fade-up">
+              <div class="icon"><i class="bi bi-card-checklist"></i></div>
+              <h4 class="title"><a href="">{{ doc.created|date }}</a></h4>
+              <p class="description">{{ doc.file_name }}</p>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
 
     
 

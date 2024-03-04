@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Iqtidorli talabalar ro'yxati
+{% endblock %}
+
+{% block content %}
+<main id="main">
+
+   <!-- ======= Intro Single ======= -->
+   <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Iqtidorli Talabalar</h1>
+            <span class="color-text-a">Iqtidorli talabalar ro'yxati</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'main:home' %}">Asosiy</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                iqtidoli-talabalar-royxati
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+
+  <!-- ======= Talent Students Section ======= -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <form action="" class="form-control" method="get">
+        <select name="talent_student_choice" onchange="this.form.submit()" class="form-select" aria-label="Default select example">
+            <option value="choose">tanlang</option>
+            <option value="STATE">Davlat stipendiatlar</option>
+            <option value="PRESIDENT">Prezident stipendiatlar</option>
+            <option value="TALENT">Iqtidorli talabalar</option>
+        </select>
+    </form>
+      <div class="row">
+        {% for i in talent_students %}
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="testimonial-item">
+            {% if i.image %}
+            <img src="{{ i.image.url }}" class="testimonial-img" alt="">
+            {% else %}
+            <img src="{% static 'assets/img/user.jpg' %}" class="testimonial-img" alt="">
+            {% endif %}
+            <h3>{{ i.first_name }} {{ i.last_name }} {{ i.patronymic }}</h3>
+            <h4>O'qituvchi: {{ i.teacher_full_name }}</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              {{ i.description}}
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section><!-- End Talent Students Section -->
+
+  
+  </main><!-- End #main -->
+
+{% endblock %}
