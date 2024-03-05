@@ -36,7 +36,28 @@ INSTALLED_APPS = [
     # packages
     'widget_tweaks',
     'hitcount',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'all',
+        # 'toolbar_Custom': [
+        #     ['Bold', 'Italic', 'Underline', 'CodeSnippet'],
+        #     ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+        #     ['Link', 'Unlink', 'Anchor'],
+        #     ['RemoveFormat', 'Source']
+        # ],
+        'extraPlugins':','.join(
+            ['codesnippet', 
+            'widget',
+            'dialog']
+        ),
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

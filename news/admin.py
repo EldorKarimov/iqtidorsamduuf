@@ -9,6 +9,7 @@ class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('created', 'updated')
     filter_horizontal = ('tags',)
+    ordering = ('-created', )
 
 
 class NewsCategoryAdmin(admin.ModelAdmin):

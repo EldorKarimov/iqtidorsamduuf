@@ -2,6 +2,8 @@ from django.db import models
 from shared.models import BaseModel
 from accounts.models import CustomUser
 from django.urls import reverse
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class NewsCategory(BaseModel):
     name = models.CharField(max_length = 150)
@@ -35,7 +37,7 @@ class News(BaseModel):
     title = models.CharField(max_length = 150)
     slug = models.SlugField(max_length = 150, unique = True)
     image = models.ImageField(upload_to='news/image')
-    description = models.TextField()
+    description = RichTextUploadingField()
     category = models.ForeignKey(NewsCategory, on_delete = models.CASCADE)
     tags = models.ManyToManyField(Tag)
     user = models.ForeignKey(CustomUser, on_delete = models.SET_NULL, null = True)
