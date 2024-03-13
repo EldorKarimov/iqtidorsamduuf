@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Tanlov tafsiloti
+{% endblock %}
+
+{% block content %}
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">{{ competition.title }}</h1>
+            <span class="color-text-a">Tanlovlar</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'main:home' %}">Asosiy</a>
+              </li>
+              
+              <li class="breadcrumb-item active" aria-current="page">
+                <a href="{% url 'main:competition_list' %}">Tanlovlar</a>
+              </li>
+              
+              <li class="breadcrumb-item active" aria-current="page">
+                Tafsilot
+              </li>
+              
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+
+  <!-- ======= Blog Single ======= -->
+  <section class="news-single nav-arrow-b">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="news-img-box">
+            <img src="{{ competition.image.url }}" alt="" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+          
+          <div class="post-content color-text-a">
+           <p>
+            {{ competition.description |safe }}
+           </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Blog Single-->
+{% endblock %}

@@ -146,6 +146,57 @@
             <div class="news-carousel-pagination carousel-pagination"></div>
         </div>
     </section><!-- End Latest News Section -->
+
+    <!-- ======= Competition Section ======= -->
+    <section class="section-property section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Tanlovlar</h2>
+              </div>
+              <div class="title-link">
+                <a href="{% url 'main:competition_list' %}">Barchasi
+                  <span class="bi bi-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="property-carousel" class="swiper">
+          <div class="swiper-wrapper">
+            {% for comp in competitions %}
+            <div class="carousel-item-b swiper-slide">
+              <div class="card-box-a card-shadow">
+                <div class="img-box-a">
+                  <img src="{{ comp.image.url }}" alt="" class="img-a img-fluid">
+                </div>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{{ comp.get_url }}"> {{ comp.title |slice:":50"}}... </a>
+                      </h2>
+                    </div>
+                    <div class="card-body-a">
+                      <a href="{{ comp.get_url }}" class="link-a"> Batafsil
+                        <span class="bi bi-chevron-right"></span>
+                      </a>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div><!-- End carousel item -->
+            {% endfor %}
+          </div>
+        </div>
+        <div class="propery-carousel-pagination carousel-pagination"></div>
+
+      </div>
+    </section><!-- End Competition Section -->
     
     <!-- ======= Services Section ======= -->
     
@@ -162,7 +213,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="icon-box" data-aos="fade-up">
               <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a href="{{ doc.file.url }}">{{ doc.created|date }}</a></h4>
+              <h4 class="title"><a href="{{ doc.file.url }}" target="_blank">{{ doc.doc_date|date }}</a></h4>
               <p class="description">{{ doc.file_name }}</p>
             </div>
           </div>
@@ -179,7 +230,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="icon-box" data-aos="fade-up">
               <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a href="">{{ doc.created|date }}</a></h4>
+              <h4 class="title"><a href="{{ doc.file.url }}" target="_blank">{{ doc.doc_date|date }}</a></h4>
               <p class="description">{{ doc.file_name }}</p>
             </div>
           </div>

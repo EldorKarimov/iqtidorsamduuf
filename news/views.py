@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
+from django.core.paginator import Paginator
 
 from .models import News, NewsCategory, Tag
 
@@ -12,13 +13,22 @@ class NewsListView(View):
         if category_slug is not None:
             category = get_object_or_404(NewsCategory, slug = category_slug)
             news = News.objects.filter(is_published = True, category = category).order_by('-created')
+            paginator = Paginator(news, 6)
+            page_number = request.GET.get("page")
+            page_obj = paginator.get_page(page_number)
         elif tag_slug is not None:
             tag = get_object_or_404(Tag, slug = tag_slug)
             news = News.objects.filter(is_published = True, tags = tag).order_by('-created')
+            paginator = Paginator(news, 6)
+            page_number = request.GET.get("page")
+            page_obj = paginator.get_page(page_number)
         else:
             news = News.objects.filter(is_published = True).order_by('-created')
+            paginator = Paginator(news, 6)
+            page_number = request.GET.get("page")
+            page_obj = paginator.get_page(page_number)
         context = {
-            'news':news,
+            'news':page_obj,
             'category':category,
             'tag':tag
         }

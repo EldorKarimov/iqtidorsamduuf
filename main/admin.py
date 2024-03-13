@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Carousel, StartUpProjects, TalentedStudents, Documents
+from .models import Carousel, StartUpProjects, TalentedStudents, Documents, Competition
 
 admin.site.register(Carousel)
 @admin.register(StartUpProjects)
@@ -25,4 +25,11 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display = ['file_name', 'created', 'updated']
     list_filter = ('doc_type', )
     search_fields = ['file_name']
+
+@admin.register(Competition)
+class CompetitionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created', 'updated']
+    search_fields = ['title']
+    list_per_page = 20
+    prepopulated_fields = {'slug':('title', )}
     

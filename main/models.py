@@ -1,5 +1,8 @@
 from django.db import models
 from shared.models import BaseModel
+from django.utils import timezone
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
 
 class Carousel(BaseModel):
     image = models.ImageField(upload_to='carousel',verbose_name='Rasm')
@@ -57,9 +60,28 @@ class Documents(BaseModel):
     doc_type = models.PositiveSmallIntegerField(choices = DOC_TYPE, verbose_name = "Hujjat turi")
     file_name = models.CharField(max_length = 255, verbose_name = "hujjat nomi")
     file = models.FileField(upload_to='uploads/doc/files', verbose_name="fayl")
+    doc_date = models.DateTimeField(default = timezone.now())
 
     def __str__(self):
         return self.file_name   
     
     class Meta:
         verbose_name_plural = "Me'yoriy hujjatlar"
+
+
+class Competition(BaseModel):
+    title = models.CharField(max_length = 255, verbose_name = "Sarlavha")
+    slug = models.SlugField(max_length = 255, unique = True)
+    image = models.ImageField(upload_to='competition/images', verbose_name="Rasm")
+    description = RichTextUploadingField(verbose_name = "Matn")
+
+    def __str__(self):
+        return self.title
+    
+    def get_url(self):
+        return reverse('main:competition_detail', args=[self.slug])
+    
+    class Meta:
+        verbose_name = "Tanlov"
+        verbose_name_plural = "Tanlovlar"
+        
