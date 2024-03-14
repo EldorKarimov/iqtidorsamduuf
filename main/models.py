@@ -9,8 +9,6 @@ class Carousel(BaseModel):
     content = models.CharField(max_length = 150, null = True, blank = True, verbose_name = "matn 1")
     content2 = models.CharField(max_length = 255, null = True, blank = True, verbose_name = "matn 2")
 
-    def __str__(self):
-        return self.content
     
     class Meta:
         verbose_name = 'Karusel'
