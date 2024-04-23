@@ -29,5 +29,5 @@ class CustomUser(AbstractUser):
         return f"{self.first_name} {self.last_name}"
     
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
