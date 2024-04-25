@@ -26,6 +26,7 @@ api_urls = [
     path('api/v1/auth/', include('accounts.api.urls')),
     path('api/v1/news/', include('news.api.urls')),
     path('api/v1/main/', include('main.api.urls')),
+    path('api/v1/courses/', include('courses.api.urls')),
 ]
 
 urlpatterns = [

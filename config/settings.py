@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'main', 
     'news',
     'shared',
+    'courses',
 
     # packages
     'rest_framework',
