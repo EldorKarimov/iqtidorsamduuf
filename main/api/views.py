@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class CarouselListAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         carousels = Carousel.objects.all().order_by('-created')
         serializer = CarouselSerializer(carousels, many = True)
@@ -22,7 +21,6 @@ class CarouselListAPIView(APIView):
         )
 
 class StartUpProjectsListApiView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         startUpProjects = StartUpProjects.objects.filter(is_available = True).order_by('-created')
         serializer = StartUpProjectSerializer(startUpProjects, many = True)
@@ -36,7 +34,6 @@ class StartUpProjectsListApiView(APIView):
         )
 
 class TalentedStudentsListAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request, talent_type = None):
         if talent_type is not None:
             talents = TalentedStudents.objects.filter(is_available = True, talent_type=talent_type).order_by('-created')
@@ -71,7 +68,6 @@ class DocumentsListAPIView(APIView):
         )
 
 class CompetitionListAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         competitions = Competition.objects.all().order_by('-created')
         serializer = CompetitionSerializer(competitions, many = True)

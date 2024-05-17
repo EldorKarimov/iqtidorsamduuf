@@ -7,7 +7,6 @@ from .serializers import NewsSerializer, CategorySerializer, TagSerializer
 from django.shortcuts import get_object_or_404
 
 class NewsListAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         news = News.objects.filter(is_published = True)
         serializer = NewsSerializer(news, many = True)
@@ -18,7 +17,6 @@ class NewsListAPIView(APIView):
         return Response(data, status=status.HTTP_200_OK)
     
 class NewsDetailAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request, news_slug):
         new = get_object_or_404(News, slug = news_slug)
         serializer = NewsSerializer(new)
@@ -32,8 +30,6 @@ class NewsDetailAPIView(APIView):
         )
     
 class NewsByCategoryAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-
     def get(self, request, cat_slug):
         category = get_object_or_404(NewsCategory, slug = cat_slug)
         news = News.objects.filter(category = category).order_by('-created')
@@ -48,8 +44,6 @@ class NewsByCategoryAPIView(APIView):
         )
 
 class NewsByTagAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-
     def get(self, request, tag_slug):
         tag = get_object_or_404(Tag, slug = tag_slug)
         news = News.objects.filter(tags = tag).order_by('-created')

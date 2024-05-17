@@ -1,12 +1,14 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from django.utils.translation import gettext_lazy as _
 from courses.models import Author, Course
 from .serializers import AuthorSerializer, CourseSerializer
 
 class CourseListAPIView(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     def get(self, request, course_type):
         courses = Course.objects.filter(course_type = course_type).order_by('-created')
         serializer = CourseSerializer(courses, many = True)
