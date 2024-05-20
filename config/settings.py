@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     "corsheaders",
     'rest_framework_simplejwt',
+    'modeltranslation',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -179,3 +180,11 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+LANGUAGES = (
+    ('uz', 'Uzbek'),
+    ('en', 'English'),
+    ('ru', 'Russian'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'

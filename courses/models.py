@@ -17,12 +17,12 @@ class Course(BaseModel):
         ("online", "Online"),
         ("offline", "Offline"),
     )
-    title = models.CharField(max_length=150, unique=True, verbose_name=_("Sarlavha"))
+    title = models.CharField(max_length=150, unique=True, verbose_name=_("title"))
     slug = models.SlugField(max_length=150, unique=True)
-    content = RichTextUploadingField(verbose_name=_("Mazmuni"))
-    youtube_link = models.CharField(null=True, blank=True, verbose_name=_("youtube havola"))
-    course_type = models.CharField(max_length=8, choices=COURSE_TYPE, verbose_name=_("Kurs turi"))
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, verbose_name=_("Muallif"))
+    content = RichTextUploadingField(verbose_name=_("content"))
+    youtube_link = models.CharField(null=True, blank=True, verbose_name=_("youtube link"))
+    course_type = models.CharField(max_length=8, choices=COURSE_TYPE, verbose_name=_("course type"))
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, verbose_name=_("author"))
     file = models.FileField(
     upload_to='uploads/course/files',
     null=True,

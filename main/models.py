@@ -12,8 +12,8 @@ class Carousel(BaseModel):
 
     
     class Meta:
-        verbose_name = 'Karusel'
-        verbose_name_plural = 'Karusellar'
+        verbose_name = _('Carousel')
+        verbose_name_plural = _('Carousels')
 
 class StartUpProjects(BaseModel):
     title = models.CharField(max_length = 150, unique = True, verbose_name = _("sarlavha"))
@@ -26,8 +26,8 @@ class StartUpProjects(BaseModel):
         return self.title
     
     class Meta:
-        verbose_name = _("Start Up loyiha")
-        verbose_name_plural = _("Start Up loyihalar")
+        verbose_name = _("startup project")
+        verbose_name_plural = _("startup projects")
 
 class TalentedStudents(BaseModel):
     TYPE = (
@@ -48,8 +48,8 @@ class TalentedStudents(BaseModel):
         return f"{self.first_name} {self.last_name}"
     
     class Meta:
-        verbose_name = _("Iqtidorli talaba")
-        verbose_name_plural = _("Iqtidorli talabalar")
+        verbose_name = _("Talent student")
+        verbose_name_plural = _("talent students")
 
 class Documents(BaseModel):
     DOC_TYPE = (
@@ -69,10 +69,10 @@ class Documents(BaseModel):
 
 
 class Competition(BaseModel):
-    title = models.CharField(max_length = 255, verbose_name = _("Sarlavha"))
+    title = models.CharField(max_length = 255, verbose_name = _("title"))
     slug = models.SlugField(max_length = 255, unique = True)
-    image = models.ImageField(upload_to='competition/images', verbose_name=_("Rasm"))
-    description = RichTextUploadingField(verbose_name = _("Matn"))
+    image = models.ImageField(upload_to='competition/images', verbose_name=_("image"))
+    description = RichTextUploadingField(verbose_name = _("desctiption"))
 
     def __str__(self):
         return self.title
