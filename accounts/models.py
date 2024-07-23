@@ -8,19 +8,19 @@ class CustomUser(AbstractUser):
     username = models.CharField(
         max_length = 50, unique = True,
         help_text=_(
-            _("Majburiy. 150 yoki undan kam belgi. Faqat harflar, raqamlar va @/./+/-/_.")
+            _("Mandatory. 150 characters or less. Only letters, numbers and @/./+/-/_.")
         ),
         error_messages={
-            "unique": _("Bunday foydalanuvchi nomiga ega foydalanuvchi allaqachon mavjud."),
+            "unique": _("A user with this username already exists."),
         },
     )
-    first_name = models.CharField(max_length = 100, verbose_name=_("Ism"))
-    last_name = models.CharField(max_length = 100, verbose_name=_("Familiya"))
-    patronymic = models.CharField(max_length = 100, verbose_name=_("Otasining ismi"), null = True, blank = True)
-    phone = models.CharField(max_length = 13, verbose_name=_("Telefon"), null = True, blank = True)
-    image = models.ImageField(upload_to='users/image', verbose_name=_("Rasm"), null = True, blank = True)
-    direction = models.CharField(max_length = 150, verbose_name=_("Yo'nalish"), null = True, blank = True)
-    group = models.CharField(max_length = 150, verbose_name=_("Guruh"), null = True, blank = True)
+    first_name = models.CharField(max_length = 100, verbose_name=_("first name"))
+    last_name = models.CharField(max_length = 100, verbose_name=_("last name"))
+    patronymic = models.CharField(max_length = 100, verbose_name=_("patronymic"), null = True, blank = True)
+    phone = models.CharField(max_length = 13, verbose_name=_("phone"), null = True, blank = True)
+    image_url = models.URLField(null=True, blank=True, verbose_name=_("image link"))
+    direction = models.CharField(max_length = 150, verbose_name=_("direction"), null = True, blank = True)
+    group = models.CharField(max_length = 150, verbose_name=_("group"), null = True, blank = True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name', 'last_name']

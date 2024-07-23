@@ -34,8 +34,8 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', include('main.urls')),
-    path('yangiliklar/', include('news.urls')),
+    # path('', include('main.urls')),
+    # path('yangiliklar/', include('news.urls')),
 
 
     # api documentation 

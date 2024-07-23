@@ -19,8 +19,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
 
 
 # Application definition
-
-INSTALLED_APPS = [
+LOCAL_APPS = [
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,15 +27,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf_yasg',
-    # apps
+   
     'accounts',
     'main', 
     'news',
     'shared',
     'courses',
-
-    # packages
+]
+THIRD_PARTY_APPS = [
+    'drf_yasg',
     'rest_framework',
     'widget_tweaks',
     'hitcount',
@@ -46,6 +45,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'modeltranslation',
 ]
+
+INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS
+    
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -139,7 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'uz-uz'
+LANGUAGE_CODE = 'en-en'
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -187,4 +189,4 @@ LANGUAGES = (
     ('ru', 'Russian'),
 )
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
