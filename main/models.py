@@ -31,9 +31,9 @@ class StartUpProjects(BaseModel):
 
 class TalentedStudents(BaseModel):
     TYPE = (
-        ('PRESIDENT', _("Prezident stipendiatlar")),
+        ('PRESIDENT', _("presidential stipendium holers")),
         ('STATE', _("Davlat stipendiatlar")),
-        ('TALENT', _("Iqtidorli talabalar"))
+        ('TALENT', _("talent students"))
     )
     first_name = models.CharField(max_length = 150, verbose_name = _("first name"))
     last_name = models.CharField(max_length = 150, verbose_name = _("last name"))
@@ -56,9 +56,9 @@ class Documents(BaseModel):
         (1, _("Buyruqlar")),
         (2, _("Nizomlar")),
     )
-    doc_type = models.PositiveSmallIntegerField(choices = DOC_TYPE, verbose_name = _("Hujjat turi"))
-    file_name = models.CharField(max_length = 255, verbose_name = _("hujjat nomi"))
-    file = models.FileField(upload_to='uploads/doc/files', verbose_name=_("fayl"))
+    doc_type = models.PositiveSmallIntegerField(choices = DOC_TYPE, verbose_name = _("document type"))
+    file_name = models.CharField(max_length = 255, verbose_name = _("file name"))
+    file = models.FileField(upload_to='uploads/doc/files', verbose_name=_("file"))
     doc_date = models.DateTimeField(default = timezone.now())
 
     def __str__(self):

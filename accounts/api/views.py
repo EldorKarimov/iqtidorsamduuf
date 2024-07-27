@@ -8,9 +8,21 @@ from django.contrib.auth.hashers import make_password
 from accounts.models import CustomUser
 from django.utils.translation import gettext_lazy as _
 from accounts.hemisAPI import HemisApi
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 
 class LoginAPIView(APIView):
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type = openapi.TYPE_OBJECT,
+            properties={
+                "username": openapi.Schema(type=openapi.TYPE_STRING),
+                "password": openapi.Schema(type=openapi.TYPE_STRING)
+            },
+            required=['username', 'password']
+        )
+    )
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')

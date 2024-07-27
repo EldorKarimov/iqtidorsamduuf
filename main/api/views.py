@@ -5,6 +5,8 @@ from main.models import *
 from .serializers import *
 from django.utils.translation import gettext_lazy as _
 from rest_framework.permissions import IsAuthenticated
+from shared.utils import get_lang_code
+from shared.pagination import CustomPageNumberPagination
 
 
 class CarouselListAPIView(APIView):
@@ -23,13 +25,11 @@ class CarouselListAPIView(APIView):
 class StartUpProjectsListApiView(APIView):
     def get(self, request):
         startUpProjects = StartUpProjects.objects.filter(is_available = True).order_by('-created')
-        serializer = StartUpProjectSerializer(startUpProjects, many = True)
-        data = {
-            'success': True,
-            'data': serializer.data
-        }
+        paginator = CustomPageNumberPagination()
+        page_obj = paginator.paginate_queryset(startUpProjects, request)
+        serializer = StartUpProjectSerializer(page_obj, many = True, context = get_lang_code(request))
         return Response(
-            data=data,
+            paginator.get_paginated_response(serializer.data),
             status=status.HTTP_200_OK
         )
 
@@ -39,17 +39,15 @@ class TalentedStudentsListAPIView(APIView):
             talents = TalentedStudents.objects.filter(is_available = True, talent_type=talent_type).order_by('-created')
         else:   
             talents = TalentedStudents.objects.filter(is_available = True).order_by('-created')
-        serializers = TalentedStudentsSerializer(talents, many = True)
-        data = {
-            'success': True,
-            'data': serializers.data
-        }
+        paginator = CustomPageNumberPagination()
+        page_obj = paginator.paginate_queryset(talents, request)
+        serializer = TalentedStudentsSerializer(page_obj, many = True, context = get_lang_code(request))
         return Response(
-            data=data,
+            paginator.get_paginated_response(serializer.data),
             status=status.HTTP_200_OK
         )
     
-
+# it is not complated
 class DocumentsListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, doc_type = None):
