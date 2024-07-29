@@ -40,9 +40,19 @@ class DocumentsSerializer(serializers.ModelSerializer):
         fields = ('id', 'doc_type', 'doc_type_display', 'file_name', 'file', 'doc_date', 'created', 'updated')
     
 class CompetitionSerializer(serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
     class Meta:
         model = Competition
         fields = ('id', 'title', 'slug', 'image', 'description')
         extra_kwargs = {
             'id':{'read_only':True}
         }
+
+    def get_title(self, obj):
+        lang_code = self.context.get('lang_code', 'uz')
+        return getattr(obj, f"title_{lang_code}", obj.title)
+    
+    def get_title(self, obj):
+        lang_code = self.context.get('lang_code', 'uz')
+        return getattr(obj, f"description_{lang_code}", obj.description)

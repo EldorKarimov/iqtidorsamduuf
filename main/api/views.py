@@ -47,7 +47,7 @@ class TalentedStudentsListAPIView(APIView):
             status=status.HTTP_200_OK
         )
     
-# it is not complated
+
 class DocumentsListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, doc_type = None):
@@ -55,20 +55,21 @@ class DocumentsListAPIView(APIView):
             docs = Documents.objects.filter(doc_type = doc_type).order_by('-created')
         else:
             docs = Documents.objects.all().order_by('-created')
-        serializer = DocumentsSerializer(docs, many = True)
-        data = {
-            'success': True,
-            'data': serializer.data
-        }
+        paginator = CustomPageNumberPagination()
+        paginator.page_size = 9
+        page_obj = paginator.paginate_queryset(docs, request)
+        serializer = DocumentsSerializer(page_obj, many = True, context = get_lang_code(request))
         return Response(
-            data=data,
+            paginator.get_paginated_response(serializer.data),
             status=status.HTTP_200_OK
         )
 
 class CompetitionListAPIView(APIView):
     def get(self, request):
         competitions = Competition.objects.all().order_by('-created')
-        serializer = CompetitionSerializer(competitions, many = True)
+        paginator = CustomPageNumberPagination()
+        page_obj = paginator.paginate_queryset(competitions, request)
+        serializer = CompetitionSerializer(page_obj, many = True, context = get_lang_code(request))
         data = {
             'success':True,
             'data':serializer.data
