@@ -20,7 +20,7 @@ class Course(BaseModel):
     title = models.CharField(max_length=150, unique=True, verbose_name=_("title"))
     slug = models.SlugField(max_length=150, unique=True)
     content = RichTextUploadingField(verbose_name=_("content"))
-    youtube_link = models.CharField(null=True, blank=True, verbose_name=_("youtube link"))
+    youtube_link = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("youtube link"))
     course_type = models.CharField(max_length=8, choices=COURSE_TYPE, verbose_name=_("course type"))
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, verbose_name=_("author"))
     file = models.FileField(
