@@ -1,11 +1,12 @@
 import requests
 import json
+from decouple import config
 
 class HemisApi:
     def user_data_json(self, username, password):
         login_url = 'https://student.samduuf.uz/rest/v1/auth/login'
         user_url = 'https://student.samduuf.uz/rest/v1/account/me'
-        api_token = "cmdTnbguE2O2OqTrbvLbjLN1zOLcKJuO"
+        api_token = config("HEMIS_API_TOKEN")
         headers =  {
             "Authorization": f"Bearer {api_token}",
             "Content-Type":"application/json"
