@@ -82,6 +82,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
     "http://127.0.0.1:3000",
+    "https://iqtidor.samduufu.uz",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -92,6 +93,16 @@ CORS_ALLOW_METHODS = [
     "DELETE",
     "OPTIONS",
 ]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'authorization',
+    'content-type',
+    'origin',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
