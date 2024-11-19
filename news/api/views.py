@@ -28,6 +28,24 @@ class NewsListAPIView(APIView):
         response = paginator.get_paginated_response(serializer.data)
         return Response(response, status=status.HTTP_200_OK)
     
+class NewsCategoryListView(APIView):
+    @swagger_auto_schema(
+        responses={
+            200: openapi.Response(
+                description="Successful Response",
+                schema=CategorySerializer(many=True)
+            )
+        }
+    )
+    def get(self, request):
+        categories = NewsCategory.objects.all()
+        serializer = CategorySerializer(categories, many = True)
+        data = {
+            'success':True,
+            'data':serializer.data
+        }
+        return Response(data=data, status=status.HTTP_200_OK)
+    
 class NewsDetailAPIView(APIView):
     @swagger_auto_schema(
         responses={
