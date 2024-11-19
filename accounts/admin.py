@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('username',) # Tartiblash tartibi
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_("Shaxsiy ma'lumotlar"), {'fields': ('first_name', 'last_name', 'patronymic', 'phone', 'image', 'direction', 'group')}),
+        (_("Shaxsiy ma'lumotlar"), {'fields': ('first_name', 'last_name', 'patronymic', 'phone', 'direction', 'group')}),
         (_('Ruxsatlar'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Muhim sanalar'), {'fields': ('last_login', 'date_joined')}),
     )

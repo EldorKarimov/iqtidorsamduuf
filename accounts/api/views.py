@@ -31,7 +31,7 @@ class LoginAPIView(APIView):
         if data == 'error':
             raise exceptions.AuthenticationFailed(detail=_("login or password error"))
         data = data.get('data')
-        if CustomUser.objects.filter(username = data.get('student_id_number')).exists():
+        if CustomUser.objects.filter(username = data.get('username')).exists():
             user = authenticate(request, username = username, password = password)
             if user is not None:
                 refresh = RefreshToken.for_user(user=user)
