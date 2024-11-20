@@ -12,7 +12,7 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
 class CourseListAPIView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     @swagger_auto_schema(
         manual_parameters=[

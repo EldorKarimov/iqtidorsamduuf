@@ -49,7 +49,7 @@ class TalentedStudentsListAPIView(APIView):
     
 
 class DocumentsListAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def get(self, request, doc_type = None):
         if doc_type is not None:
             docs = Documents.objects.filter(doc_type = doc_type).order_by('-created')
